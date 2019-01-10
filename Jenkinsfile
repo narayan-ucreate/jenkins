@@ -8,6 +8,7 @@ pipeline {
         DB_DATABASE='postgres'
         DB_USERNAME='postgres'
         DB_PASSWORD='postgres'
+        
     }
     stages {
         stage('install php') {

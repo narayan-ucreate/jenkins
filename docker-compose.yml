@@ -2,7 +2,7 @@ version: '2'
 services:
   php-install:
       image: ucreateit/php7.2:v0.1
-      command: /bin/sh -c 'php1 -r \"copy('.env.example', '.env');\" && php artisan key:generate && composer1 install -n --prefer-dist && ./vendor/bin/phpunit'
+      command: php1 -r \"copy('.env.example', '.env')
   postgres-test:
       image: postgres:10.3-alpine
       environment:

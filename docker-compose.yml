@@ -4,7 +4,7 @@ services:
       image: ucreateit/php7.2:v0.1
       links:
           - postgres-test
-  postgres-test:
+  pgsql:
       image: postgres:10.3-alpine
       environment:
         POSTGRES_PASSWORD: postgres

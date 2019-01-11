@@ -2,8 +2,8 @@ version: '2'
 services:
   php-install:
       image: ucreateit/php7.2:v0.1
-      command: >
-            sh -c "php1 -m"
+      entrypoint: |
+            bash -c 'bash -s composer install -n --prefer-dist'
   postgres-test:
       image: postgres:10.3-alpine
       environment:
@@ -20,14 +20,3 @@ services:
         - "5000:80"
       volumes:
         - ./pgadmin:/var/lib/pgadmin
-
-  migration:
-    build: .
-    image: ucreateit/php7.2:v0.1
-    command: composer install
-    volumes:
-      - .:/code
-    links:
-      - postgres-test
-    depends_on:
-      - php-install

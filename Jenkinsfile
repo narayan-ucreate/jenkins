@@ -20,8 +20,6 @@ pipeline {
             steps {
              sh 'docker-compose -f docker-compose.yml up -d postgres-test'
              sh 'docker-compose -f docker-compose.yml up -d pgadmin'
-             sh 'docker-compose -f docker-compose.yml up -d migration'
-
             }
         }
     }

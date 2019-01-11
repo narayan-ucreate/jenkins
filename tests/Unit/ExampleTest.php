@@ -15,8 +15,7 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        echo env('DB_HOST');
-        //\Artisan::call('migrate');
+        \Artisan::call('migrate');
 
 //        try {
 //            $db = new \PDO('pgsql:host=postgres-test;port=5432;dbname=test', 'postgres', 'postgres');

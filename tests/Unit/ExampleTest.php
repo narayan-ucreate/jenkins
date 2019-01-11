@@ -16,7 +16,7 @@ class ExampleTest extends TestCase
     public function testBasicTest()
     {
         try {
-            $db = new \PDO('pgsql:host=localhost;port=5432;dbname=test;user=postgres;password=postgres');
+            $db = new \PDO("pgsql:host='postgres-test';port=5432;dbname=test;user=postgres;password=postgres");
 
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

@@ -12,9 +12,19 @@ pipeline {
     }
     stages {
         stage('install php') {
-         steps {
-               sh 'docker-compose -f docker-compose.yml up -d php-install php --version'
-          }
+                    agent {
+                        docker { image 'ucreateit/php7.2:v0.1' }
+                    }
+
+                 steps {
+                      sh 'php --version'
+                        sh 'php -m'
+                        sh "php -r \"copy('.env.example', '.env');\""
+                        sh 'php artisan key:generate'
+                        sh 'composer install -n --prefer-dist'
+                        sh './vendor/bin/phpunit'
+
+                  }
         }
         stage('install database') {
             steps {

@@ -2,7 +2,8 @@ version: '2'
 services:
   php-install:
       image: ucreateit/php7.2:v0.1
-      command: php1 -r \"copy('.env.example', '.env')
+      command: >
+            sh -c "php1 -m
   postgres-test:
       image: postgres:10.3-alpine
       environment:

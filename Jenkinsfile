@@ -22,6 +22,7 @@ pipeline {
                         sh "php -r \"copy('.env.example', '.env');\""
                         sh 'php artisan key:generate'
                         sh 'composer install -n --prefer-dist'
+                        sh 'docker-compose -f docker-compose.yml up -d php-install'
                         sh './vendor/bin/phpunit'
 
                   }
@@ -30,6 +31,7 @@ pipeline {
             steps {
              sh 'docker-compose -f docker-compose.yml up -d postgres-test'
              sh 'docker-compose -f docker-compose.yml up -d pgadmin'
+
             }
         }
     }

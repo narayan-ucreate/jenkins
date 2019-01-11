@@ -11,6 +11,13 @@ pipeline {
 
     }
     stages {
+        stage('install database') {
+                steps {
+                 sh 'docker-compose -f docker-compose.yml up -d postgres-test'
+                 sh 'docker-compose -f docker-compose.yml up -d pgadmin'
+
+                }
+        }
         stage('install php') {
                     agent {
                         docker { image 'ucreateit/php7.2:v0.1' }
@@ -22,17 +29,10 @@ pipeline {
                         sh "php -r \"copy('.env.example', '.env');\""
                         sh 'php artisan key:generate'
                         sh 'composer install -n --prefer-dist'
-                        sh 'docker-compose -f docker-compose.yml up -d php-install'
                         sh './vendor/bin/phpunit'
 
                   }
         }
-        stage('install database') {
-            steps {
-             sh 'docker-compose -f docker-compose.yml up -d postgres-test'
-             sh 'docker-compose -f docker-compose.yml up -d pgadmin'
 
-            }
-        }
     }
 }

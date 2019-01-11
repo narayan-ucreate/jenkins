@@ -1,9 +1,7 @@
 version: '2'
 services:
   php-install:
-      image: php
-      ports:
-        - "80:80"
+      image: ucreateit/php7.2:v0.1
   postgres-test:
       image: postgres:10.3-alpine
       environment:

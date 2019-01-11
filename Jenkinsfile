@@ -14,6 +14,7 @@ pipeline {
         stage('install php') {
          steps {
             sh 'docker-compose -f docker-compose.yml up -d php-install'
+            sh 'php --version'
           }
         }
         stage('install database') {

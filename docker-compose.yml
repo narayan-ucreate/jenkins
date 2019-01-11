@@ -3,7 +3,7 @@ services:
   php-install:
       image: ucreateit/php7.2:v0.1
       command: >
-            sh -c "php1 -m
+            sh -c "php1 -m"
   postgres-test:
       image: postgres:10.3-alpine
       environment:

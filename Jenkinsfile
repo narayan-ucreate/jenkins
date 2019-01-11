@@ -5,7 +5,7 @@ pipeline {
         DB_CONNECTION='pgsql'
         DB_HOST='postgres-test'
         DB_PORT='5432'
-        DB_DATABASE='postgres'
+        DB_DATABASE='test'
         DB_USERNAME='postgres'
         DB_PASSWORD='postgres'
 

@@ -3,7 +3,7 @@ pipeline {
     environment {
         REDIS_HOST='localhost'
         DB_CONNECTION='pgsql'
-        DB_HOST='postgres-test'
+        DB_HOST='pgsql'
         DB_PORT='5432'
         DB_DATABASE='test'
         DB_USERNAME='postgres'

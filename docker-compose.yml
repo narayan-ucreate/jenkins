@@ -2,8 +2,7 @@ version: '2'
 services:
   php-install:
       image: ucreateit/php7.2:v0.1
-      entrypoint:
-        - php -r \"copy('.env.example', '.env');\"
+      command: ["composer", "update"]
   postgres-test:
       image: postgres:10.3-alpine
       environment:

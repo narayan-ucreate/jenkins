@@ -9,43 +9,36 @@ pipeline {
         DB_USERNAME='postgres'
         DB_PASSWORD='postgres'
         REPO_URL='narayan-ucreate/jenkins'
-       ACCESS_TOKEN= credentials('JENKINS_ACCESS_TOKEN')
+        ACCESS_TOKEN= credentials('JENKINS_ACCESS_TOKEN')
 
     }
     stages {
         stage('install database') {
-                steps {
-                echo 'url'
+             steps {
                  updateGithubStatus('pending')
                  sh 'docker-compose -f docker-compose.yml up -d pgsql'
                  sh 'docker-compose -f docker-compose.yml up -d pgadmin'
-
-                }
+             }
         }
-        stage('install php') {
-                    agent {
-                        docker { image 'ucreateit/php7.2:v0.1' }
-                    }
-
-                 steps {
-                        sh "php -r \"copy('.env.example', '.env');\""
-                        sh 'php artisan key:generate'
-                        sh 'composer install -n --prefer-dist'
-                        sh './vendor/bin/phpunit'
-                  }
+        stage('Unit Testing') {
+             agent {
+                 docker { image 'ucreateit/php7.2:v0.1' }
+             }
+             steps {
+                 sh "php -r \"copy('.env.example', '.env');\""
+                 sh 'php artisan key:generate'
+                 sh 'composer install -n --prefer-dist'
+                 sh './vendor/bin/phpunit'
+             }
         }
     }
     post {
-                always {
-                    echo 'always'
-                }
-                success {
-                  echo 'success';
-                }
-                failure {
-                 echo 'faild'
-
-                }
+        success {
+             updateGithubStatus('success')
+        }
+        failure {
+             updateGithubStatus('failure')
+        }
     }
 }
 

@@ -16,8 +16,7 @@ pipeline {
         stage('install database') {
                 steps {
                 echo 'url'
-                echo env.ACCESS_TOKEN
-                 sh 'curl https://api.github.com/repos/narayan-ucreate/jenkins/statuses/'+env.git_COMMIT+'?access_token='+ACCESS_TOKEN+' --header "Content-Type: application/json" --data "{\\"state\\": \\"pending\\", \\"description\\": \\"Jenkins\\"}"'
+                 updateGithubStatus('pending')
                  sh 'docker-compose -f docker-compose.yml up -d pgsql'
                  sh 'docker-compose -f docker-compose.yml up -d pgadmin'
 
@@ -37,12 +36,19 @@ pipeline {
         }
     }
     post {
+                always {
+                    echo 'always'
+                }
                 success {
-                   echo 'success'
+                  echo 'success';
                 }
                 failure {
                  echo 'faild'
 
                 }
     }
+}
+
+void updateGithubStatus(status) {
+     sh 'curl https://api.github.com/repos/narayan-ucreate/jenkins/statuses/'+env.git_COMMIT+'?access_token='+env.ACCESS_TOKEN+' --header "Content-Type: application/json" --data "{\\"state\\": \\"'+status+'\\", \\"description\\": \\"Jenkins\\"}"'
 }

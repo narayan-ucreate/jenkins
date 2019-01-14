@@ -9,7 +9,7 @@ pipeline {
         DB_USERNAME='postgres'
         DB_PASSWORD='postgres'
         REPO_URL='narayan-ucreate/jenkins'
-        ACCESS_TOKEN='6d9c56490bcbc14185adbb83aa01d89ada951667'
+        ACCESS_TOKEN='c8e79908bd907d3ff449760e805ae1fe717d1929'
 
     }
     stages {

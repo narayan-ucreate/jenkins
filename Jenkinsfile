@@ -8,7 +8,6 @@ pipeline {
         DB_DATABASE='test'
         DB_USERNAME='postgres'
         DB_PASSWORD='postgres'
-
     }
     stages {
         stage('install database') {
@@ -33,11 +32,6 @@ pipeline {
 
     }
     post {
-                always {
-                      sh('build.sh')
-                }
-                failure {
-                   echo 'faild'
-                }
+               
     }
 }

@@ -14,7 +14,9 @@ pipeline {
     stages {
         stage('install database') {
                 steps {
-                    sh 'curl https://api.github.com/repos/' + REPO_URL + '/statuses/'+ env.GIT_COMMIT+'?access_token="d843bb6d8711c6355dfdb1202aa9a45ca2007ee5" --header "Content-Type: application/json" --data "{\\"state\\": \\"pending\\", \\"description\\": \\"Jenkins\\"}"'
+                echo 'url'
+                echo env.REPO_URL
+                    sh 'curl https://api.github.com/repos/' + env.REPO_URL + '/statuses/'+ env.GIT_COMMIT+'?access_token="d843bb6d8711c6355dfdb1202aa9a45ca2007ee5" --header "Content-Type: application/json" --data "{\\"state\\": \\"pending\\", \\"description\\": \\"Jenkins\\"}"'
                  sh 'docker-compose -f docker-compose.yml up -d pgsql'
                  sh 'docker-compose -f docker-compose.yml up -d pgadmin'
 
@@ -24,6 +26,7 @@ pipeline {
                     agent {
                         docker { image 'ucreateit/php7.2:v0.1' }
                     }
+
                  steps {
                         sh "php -r \"copy('.env.example', '.env');\""
                         sh 'php artisan key:generate'
@@ -35,11 +38,13 @@ pipeline {
     }
     post {
                 success {
-                    sh 'curl https://api.github.com/repos/' + REPO_URL + '/statuses/'+ env.GIT_COMMIT+'?access_token="d843bb6d8711c6355dfdb1202aa9a45ca2007ee5" --header "Content-Type: application/json" --data "{\\"state\\": \\"success\\", \\"description\\": \\"Jenkins\\"}"'
+                    sh 'curl https://api.github.com/repos/' + env.REPO_URL + '/statuses/'+ env.GIT_COMMIT+'?access_token="d843bb6d8711c6355dfdb1202aa9a45ca2007ee5" --header "Content-Type: application/json" --data "{\\"state\\": \\"success\\", \\"description\\": \\"Jenkins\\"}"'
+
+
 
                 }
                 failure {
-                   sh 'curl https://api.github.com/repos/' + REPO_URL + '/statuses/'+ env.GIT_COMMIT+'?access_token="d843bb6d8711c6355dfdb1202aa9a45ca2007ee5" --header "Content-Type: application/json" --data "{\\"state\\": \\"failure\\", \\"description\\": \\"Jenkins\\"}"'
+                   sh 'curl https://api.github.com/repos/'+env.REPO_URL+'/statuses/'+ env.GIT_COMMIT+'?access_token="d843bb6d8711c6355dfdb1202aa9a45ca2007ee5" --header "Content-Type: application/json" --data "{\\"state\\": \\"failure\\", \\"description\\": \\"Jenkins\\"}"'
                 }
     }
 }

@@ -38,7 +38,7 @@ pipeline {
     }
     post {
                 success {
-                   sh 'curl https://api.github.com/repos/narayan-ucreate/jenkins/statuses/'+env.git_COMMIT+'?access_token='+ACCESS_TOKEN+' --header "Content-Type: application/json" --data "{\\"state\\": \\"success\\", \\"description\\": \\"Jenkins\\"}"'
+                   echo 'success'
                 }
                 failure {
                  echo 'faild'

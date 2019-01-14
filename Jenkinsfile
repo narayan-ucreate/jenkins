@@ -9,6 +9,7 @@ pipeline {
         DB_USERNAME='postgres'
         DB_PASSWORD='postgres'
         REPO_URL='narayan-ucreate/jenkins'
+        ACCESS_TOKEN='a3ff7cca17bca7aef0047cfa9ed8b36bd653ee18'
 
     }
     stages {
@@ -16,7 +17,7 @@ pipeline {
                 steps {
                 echo 'url'
                 echo env.REPO_URL
-                    sh 'curl https://api.github.com/repos/narayan-ucreate/jenkins/statuses/682e130247dc61ea721c5f2049eb18faed2ec726?access_token=d843bb6d8711c6355dfdb1202aa9a45ca2007ee5 --header "Content-Type: application/json" --data "{\\"state\\": \\"pending\\", \\"description\\": \\"Jenkins\\"}"'
+                    sh 'curl https://api.github.com/repos/narayan-ucreate/jenkins/statuses/682e130247dc61ea721c5f2049eb18faed2ec726?access_token='+env.ACCESS_TOKEN+' --header "Content-Type: application/json" --data "{\\"state\\": \\"pending\\", \\"description\\": \\"Jenkins\\"}"'
                  sh 'docker-compose -f docker-compose.yml up -d pgsql'
                  sh 'docker-compose -f docker-compose.yml up -d pgadmin'
 
@@ -34,7 +35,13 @@ pipeline {
                         sh './vendor/bin/phpunit'
                   }
         }
-
     }
-
+    post {
+                success {
+                    sh 'curl https://api.github.com/repos/' + env.REPO_URL + '/statuses/'+ env.GIT_COMMIT+'?access_token='+env.ACCESS_TOKEN+' --header "Content-Type: application/json" --data "{\\"state\\": \\"success\\", \\"description\\": \\"Jenkins\\"}"'
+                }
+                failure {
+                   sh 'curl https://api.github.com/repos/'+env.REPO_URL+'/statuses/'+ env.GIT_COMMIT+'?access_token='+env.ACCESS_TOKEN+' --header "Content-Type: application/json" --data "{\\"state\\": \\"failure\\", \\"description\\": \\"Jenkins\\"}"'
+                }
+    }
 }

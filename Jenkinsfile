@@ -16,6 +16,7 @@ pipeline {
         ACCESS_TOKEN= ''//credentials('JENKINS_ACCESS_TOKEN')
         PROJECT_NAME='ucreate-review-tool'
         ERROR_MESSAGE = ''
+        
     }
     stages {
          stage('Check Rejected Code') {

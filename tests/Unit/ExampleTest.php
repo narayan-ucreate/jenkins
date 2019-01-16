@@ -15,20 +15,6 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        \Artisan::call('migrate');
-
-//        try {
-//            $db = new \PDO('pgsql:host=postgres-test;port=5432;dbname=test', 'postgres', 'postgres');
-//
-//            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//
-//            $sql ='CREATE TABLE IF NOT EXISTS test1 (id serial PRIMARY KEY, prename VARCHAR(50) NOT NULL);';
-//            $db->exec($sql);
-//            echo 'success';
-//        } catch (\Exception $e) {
-//            dd($e->getMessage());
-//        }
-
         $this->assertTrue(true);
     }
 }

@@ -13,7 +13,7 @@ pipeline {
         DB_USERNAME='postgres'
         DB_PASSWORD='postgres'
         REPO_URL='narayan-ucreate/jenkins'
-        ACCESS_TOKEN= credentials('JENKINS_ACCESS_TOKEN')
+        ACCESS_TOKEN= ''//credentials('JENKINS_ACCESS_TOKEN')
         PROJECT_NAME='ucreate-review-tool'
         ERROR_MESSAGE = ''
     }

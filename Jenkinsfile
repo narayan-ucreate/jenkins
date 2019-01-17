@@ -8,7 +8,7 @@ pipeline {
         REDIS_HOST='localhost'
         DB_CONNECTION='pgsql'
         DB_HOST='ec2-13-233-43-203.ap-south-1.compute.amazonaws.com'
-        DB_PORT='5434'
+        DB_PORT='5432'
         DB_DATABASE='test'
         DB_USERNAME='postgres'
         DB_PASSWORD='postgres'

@@ -37,6 +37,7 @@ pipeline {
                  }
               }
          }
+         
         stage('Database Setup') {
              steps {
                  sh 'docker-compose -f docker-compose.yml up -d pgsql'

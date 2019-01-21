@@ -15,6 +15,7 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
+        \Artisan::call('migrate --foce');
         $this->assertTrue(true);
     }
 }

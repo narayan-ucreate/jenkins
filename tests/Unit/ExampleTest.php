@@ -15,7 +15,8 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
-        \Artisan::call('migrate --force');
+        \Artisan::call('migrate', ['--force' => 'true' ]).
+
         $this->assertTrue(true);
     }
 }

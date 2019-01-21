@@ -29,10 +29,10 @@ pipeline {
                     def json = new JsonSlurper().parseText(response)
                     def rejected_count = "${json.rejected_count}"
                     if (rejected_count != '0') { // if rejected commit is more than 1 it will stopped to build process
-                        currentBuild.result = 'FAILURE'
-                        ERROR_MESSAGE = 'Build faild due to rejected commits.'
-                        error "Build faild due to rejected commits."
-                        sh 'exit 1'
+                        //currentBuild.result = 'FAILURE'
+                        //ERROR_MESSAGE = 'Build faild due to rejected commits.'
+                        //error "Build faild due to rejected commits."
+                        //sh 'exit 1'
                     }
                  }
               }

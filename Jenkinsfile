@@ -7,7 +7,7 @@ pipeline {
     environment {
         REDIS_HOST='localhost'
         DB_CONNECTION='pgsql'
-        DB_HOST='ec2-13-233-43-203.ap-south-1.compute.amazonaws.com'
+        DB_HOST='ec2-13-232-154-105.ap-south-1.compute.amazonaws.com'
         DB_PORT='5432'
         DB_DATABASE='test'
         DB_USERNAME='postgres'
@@ -37,7 +37,7 @@ pipeline {
                  }
               }
          }
-         
+
         stage('Database Setup') {
              steps {
                  sh 'docker-compose -f docker-compose.yml up -d pgsql'

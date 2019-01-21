@@ -4,7 +4,7 @@ namespace Tests;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Console\Kernel;
-
+use DB;
 trait CreatesApplication
 {
     /**
@@ -22,4 +22,5 @@ trait CreatesApplication
 
         return $app;
     }
+
 }

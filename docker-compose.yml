@@ -2,9 +2,10 @@ version: '2'
 services:
   pgsql:
       image: postgres:10.3-alpine
+        container_name: postgrescontainer_jenkins
       environment:
         POSTGRES_PASSWORD: postgres
-        POSTGRES_DB: 'dsaf'
+        POSTGRES_DB: 'dsafdsf'
       ports:
         - "5432:5432"
 

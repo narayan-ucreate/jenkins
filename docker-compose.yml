@@ -4,7 +4,7 @@ services:
       image: postgres:10.3-alpine
       environment:
         POSTGRES_PASSWORD: postgres
-        POSTGRES_DB: ${DB_DATABASE}
+        POSTGRES_DB: 'dsaf'
       ports:
         - "5432:5432"
 
